@@ -1,0 +1,71 @@
+#include <BluetoothSerial.h>
+
+BluetoothSerial SerialBT;
+char i,q;
+int h,co,m,r,methane,hy;
+bool rain = false;
+//unsigned long previousMillis;
+
+void setup() {
+  Serial.begin(9600);
+  SerialBT.begin("ESP32_BT"); // Bluetooth device name
+
+
+
+  pinMode(15, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(16, OUTPUT);
+
+
+  //EEPROM.begin(512);
+}
+
+void loop() {
+
+
+  if (SerialBT.available()) {
+     i = SerialBT.read();
+     Serial.println(i);
+  }
+
+  if (i=='F'){
+    digitalWrite(16,HIGH);
+    digitalWrite(4,LOW);
+    digitalWrite(15,HIGH);
+    digitalWrite(2,LOW);
+  }
+  else if (i=='B'){
+    digitalWrite(4,HIGH);
+    digitalWrite(16,LOW);
+    digitalWrite(2,HIGH);
+    digitalWrite(15,LOW);
+  }
+
+  else if (i=='S'){
+    digitalWrite(4,LOW);
+    digitalWrite(16,LOW);
+    digitalWrite(2,LOW);
+    digitalWrite(15,LOW);
+  }
+
+  else if (i=='L'){
+    digitalWrite(4,HIGH);
+    digitalWrite(16,LOW);
+    digitalWrite(15,HIGH);
+    digitalWrite(2,LOW);
+  }
+
+  else if (i=='R'){
+    digitalWrite(16,HIGH);
+    digitalWrite(4,LOW);
+    digitalWrite(2,HIGH);
+    digitalWrite(15,LOW);
+  }
+
+
+  
+  
+
+  
+}
